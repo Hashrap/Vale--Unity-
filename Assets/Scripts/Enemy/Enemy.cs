@@ -201,7 +201,7 @@ public class Enemy: MonoBehaviour {
 			if(other.tag == "pAttack")
 				knockback = this.transform.position - target.transform.position;
 			knockback.y = 0;
-			rigidbody.AddForce(knockback.normalized * atk.getForce(), ForceMode.Impulse);
+			GetComponent<Rigidbody>().AddForce(knockback.normalized * atk.getForce(), ForceMode.Impulse);
 		}
 	}
 	

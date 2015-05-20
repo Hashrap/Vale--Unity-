@@ -99,7 +99,7 @@ public class Player : MonoBehaviour {
 		
 		Vector3 vec = new Vector3(h,0.0f,v);
 
-		rigidbody.MovePosition(rigidbody.position+(speed * vec.normalized * Time.deltaTime));
+		GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position+(speed * vec.normalized * Time.deltaTime));
 	}
 
 	void look()
@@ -121,20 +121,20 @@ public class Player : MonoBehaviour {
 	{
 		if(other.tag == "health")
 		{
-			audio.PlayOneShot(healthClip);
+			GetComponent<AudioSource>().PlayOneShot(healthClip);
 			hp += maxHP / 5;
 			if(hp > maxHP){ hp = maxHP; }
 			Destroy(other.gameObject);
 		}
 		else if (other.tag == "coin")
 		{
-			audio.PlayOneShot(coinClip);
+			GetComponent<AudioSource>().PlayOneShot(coinClip);
 			dough++;
 			Destroy (other.gameObject);
 		}
 		else if (other.tag == "tp")
 		{
-			audio.PlayOneShot(techClip);
+			GetComponent<AudioSource>().PlayOneShot(techClip);
 			tp += maxTP / 3;
 			if(tp > maxTP){ tp = maxTP; }
 			Destroy(other.gameObject);
@@ -144,13 +144,13 @@ public class Player : MonoBehaviour {
 			attackBase atk = other.gameObject.GetComponent<attackBase>();
 			hp -= atk.getDamage();
 			if(hp <= 0)
-				audio.PlayOneShot(deathClip);
+				GetComponent<AudioSource>().PlayOneShot(deathClip);
 			else
 			{
-				audio.PlayOneShot(damageClip);
+				GetComponent<AudioSource>().PlayOneShot(damageClip);
 				Vector3 knockback = this.transform.position - atk.getSource().transform.position;
 				knockback.y = 0;
-				rigidbody.AddForce(knockback.normalized * atk.getForce(), ForceMode.Impulse);
+				GetComponent<Rigidbody>().AddForce(knockback.normalized * atk.getForce(), ForceMode.Impulse);
 			}
 		}
 	}

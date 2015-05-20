@@ -40,15 +40,15 @@ public class DefaultBow : Weapon {
 		if(timer >= minSweet) {
 			if(timer <= maxSweet)
 			{
-				audio.PlayOneShot(m2sweetClip);
+				GetComponent<AudioSource>().PlayOneShot(m2sweetClip);
 				damage += sweetspotDamageBonus;
 				speed += sweetspotSpeedBonus;
 			}
 			else
-				audio.PlayOneShot(m2wildClip);
+				GetComponent<AudioSource>().PlayOneShot(m2wildClip);
 			
 		}
-		else { audio.PlayOneShot(m2weakClip); }
+		else { GetComponent<AudioSource>().PlayOneShot(m2weakClip); }
 		
 		GameObject temp = (GameObject)Instantiate(powerAttack, this.transform.position, rot);
 		temp.GetComponent<powerShot>().setSpeed(speed);

@@ -72,7 +72,7 @@ public class TrailArc : MonoBehaviour
 	
 	void Start ()
 	{
-		if(gameObject.rigidbody.velocity.magnitude < minVel)
+		if(gameObject.GetComponent<Rigidbody>().velocity.magnitude < minVel)
 			Destroy(this);
 		
 		// Data Inititialization
@@ -93,7 +93,7 @@ public class TrailArc : MonoBehaviour
 		trail.AddComponent(typeof(MeshRenderer));
 		trailMaterial = new Material(material);
 		fadeOutRatio = trailMaterial.GetColor("_TintColor").a;
-		trail.renderer.material = trailMaterial;
+		trail.GetComponent<Renderer>().material = trailMaterial;
 	}
 	
 	void printPoints()
@@ -249,10 +249,10 @@ public class TrailArc : MonoBehaviour
 			// Do we render this?
 			if(displayCnt < 2)
 			{
-				trail.renderer.enabled = false;
+				trail.GetComponent<Renderer>().enabled = false;
 				return;
 			}
-			trail.renderer.enabled = true;
+			trail.GetComponent<Renderer>().enabled = true;
 			
 			// Common data
 			lifeTimeRatio = 1f / lifetime;

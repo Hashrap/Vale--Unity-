@@ -43,8 +43,8 @@ public class wave : MonoBehaviour
 			col.radius = radius;
 		else
 		{
-			if(this.gameObject.collider != null)
-				Destroy(this.gameObject.collider);
+			if(this.gameObject.GetComponent<Collider>() != null)
+				Destroy(this.gameObject.GetComponent<Collider>());
 			alpha -= Time.deltaTime*(1/fade);
 			Color color = new Color(r/255.0f,g/255.0f,b/255.0f,alpha);
 			line.SetColors(color,color);
